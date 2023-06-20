@@ -1,4 +1,4 @@
-FROM node:14.19.2
+FROM node:18.16.0
 
 RUN mkdir -p /usr/src/
 
@@ -10,4 +10,4 @@ RUN npm install
 
 COPY [".",  "/usr/src/"]
 
-CMD ["npm", "run", "start"]
+CMD ["npm", "run", "dev"]
