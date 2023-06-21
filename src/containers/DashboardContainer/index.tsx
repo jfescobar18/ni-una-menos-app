@@ -1,10 +1,31 @@
+import { useEffect, useState } from "react"
 import { Button } from "../../components/Button"
 import { InfoCard } from "../../components/InfoCard"
 import MapCard from "../../components/MapCard"
 import { ParentContainer } from "../LoginContainer/styledComponents"
 import { ButtonContainer, LocationContainer } from "./styledComponents"
+import { coordinatesGenerator } from "../../utils/coordinatesGenerator"
+import { GoogleMapsPosition } from "../../types/GoogleMapsMarker"
 
 const DashboardContainer = () => {
+    const start = { lat: 19.347622, lng: -99.275614 }
+    const end = { lat: 19.490966, lng: -99.126652 }
+
+    const getCoordinates = async () => {
+        for await (const coordinate of coordinatesGenerator(start, end, 20)) {
+            setMarkerPosition(coordinate)
+        }
+    }
+
+    const [markerPosition, setMarkerPosition] = useState<GoogleMapsPosition>({
+        lat: 0,
+        lng: 0,
+    })
+
+    useEffect(() => {
+        getCoordinates()
+    }, [])
+
     return (
         <>
             <ParentContainer>
@@ -25,7 +46,11 @@ const DashboardContainer = () => {
                         lastLocation="lastLocation"
                         SOSTime="SOSTime"
                     />
-                    <MapCard />
+                    <MapCard
+                        markerPosition={markerPosition}
+                        center={start}
+                        zoom={15}
+                    />
                 </LocationContainer>
             </ParentContainer>
         </>

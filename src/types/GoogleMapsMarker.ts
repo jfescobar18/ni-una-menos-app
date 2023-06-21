@@ -1,4 +1,4 @@
-export interface GoogleMapsMarker {
+export interface GoogleMapsPosition {
     lat: number
     lng: number
 }

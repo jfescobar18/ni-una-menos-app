@@ -1,15 +1,15 @@
 import { useEffect, useRef } from "react"
 import { MarkerClusterer } from "@googlemaps/markerclusterer"
 import icon from "../../assets/customMarker.png"
-import { GoogleMapsMarker } from "../../types/GoogleMapsMarker"
+import { GoogleMapsPosition } from "../../types/GoogleMapsMarker"
 
 interface MapViewProps {
+    markerList: GoogleMapsPosition[]
     center: google.maps.LatLngLiteral
     zoom: number
-    markerList: GoogleMapsMarker[]
 }
 
-const MapView = ({ center, zoom, markerList }: MapViewProps) => {
+const MapView = ({ center, markerList, zoom }: MapViewProps) => {
     const ref = useRef<HTMLDivElement>(null)
     let googleMap: google.maps.Map | null | undefined = null
 
@@ -22,7 +22,7 @@ const MapView = ({ center, zoom, markerList }: MapViewProps) => {
                 })
             }
 
-            const createMarker = (markerObj: GoogleMapsMarker) =>
+            const createMarker = (markerObj: GoogleMapsPosition) =>
                 new window.google.maps.Marker({
                     position: {
                         lat: markerObj.lat,
