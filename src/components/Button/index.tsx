@@ -4,8 +4,8 @@ import { StyledButton } from "./styledComponents"
 export interface iButton {
     to: string
     text: string
-    bgColor: string
-    textColor: string
+    bgcolor: string
+    textcolor: string
     size?: string
     width?: string
 }
@@ -13,8 +13,8 @@ export interface iButton {
 export const Button = ({
     to,
     text,
-    bgColor = "#fff",
-    textColor = "#5f0f5f",
+    bgcolor = "#fff",
+    textcolor = "#5f0f5f",
     size = "s",
     width = "125px",
 }: iButton) => {
@@ -28,8 +28,8 @@ export const Button = ({
         <>
             <StyledButton
                 to={to}
-                bgColor={bgColor}
-                textColor={textColor}
+                bgcolor={bgcolor}
+                textcolor={textcolor}
                 width={width}
                 className={sizeClass}
             >

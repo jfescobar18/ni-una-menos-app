@@ -2,21 +2,21 @@ import { Link } from "react-router-dom"
 import styled from "styled-components"
 
 export const StyledButton = styled(Link)<{
-    bgColor: string
-    textColor: string
+    bgcolor: string
+    textcolor: string
     width: string
 }>`
     display: inline-block;
     margin: 10px;
     padding: 12px 20px;
     text-align: center;
-    background-color: ${(props) => props.bgColor};
-    color: ${(props) => props.textColor};
+    background-color: ${(props) => props.bgcolor};
+    color: ${(props) => props.textcolor};
     text-decoration: none;
     border-radius: 5px;
     transition: background-color 0.3s ease;
     &:hover {
-        filter: drop-shadow(0 0 7px ${(props) => props.bgColor});
+        filter: drop-shadow(0 0 7px ${(props) => props.bgcolor});
     }
 
     &.s {

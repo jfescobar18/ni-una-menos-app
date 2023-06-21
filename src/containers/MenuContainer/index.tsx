@@ -17,16 +17,16 @@ const MenuContainer = () => {
                     <Button
                         to="/Dashboard"
                         text="Dispositivo 1"
-                        bgColor="#fff"
-                        textColor="#5f0f5f"
+                        bgcolor="#fff"
+                        textcolor="#5f0f5f"
                         width="300px"
                         size="s"
                     />
                     <Button
                         to="/Dashboard"
                         text="Dispositivo 2"
-                        bgColor="#fff"
-                        textColor="#5f0f5f"
+                        bgcolor="#fff"
+                        textcolor="#5f0f5f"
                         width="300px"
                         size="s"
                     />

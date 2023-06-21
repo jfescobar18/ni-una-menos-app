@@ -1,10 +1,10 @@
 import { Button } from "../../components/Button"
 import { InfoCard } from "../../components/InfoCard"
+import MapCard from "../../components/MapCard"
 import { ParentContainer } from "../LoginContainer/styledComponents"
 import { ButtonContainer, LocationContainer } from "./styledComponents"
 
 const DashboardContainer = () => {
-    // AIzaSyCthUx0-Y6uSgZ5ts2JvsS9HtL9IEh8wwU
     return (
         <>
             <ParentContainer>
@@ -12,8 +12,8 @@ const DashboardContainer = () => {
                     <Button
                         to="/Menu"
                         text="Regresar"
-                        bgColor="#fff"
-                        textColor="#5f0f5f"
+                        bgcolor="#fff"
+                        textcolor="#5f0f5f"
                         width="60px"
                         size="s"
                     />
@@ -25,6 +25,7 @@ const DashboardContainer = () => {
                         lastLocation="lastLocation"
                         SOSTime="SOSTime"
                     />
+                    <MapCard />
                 </LocationContainer>
             </ParentContainer>
         </>
