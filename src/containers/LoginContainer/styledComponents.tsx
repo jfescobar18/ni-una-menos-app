@@ -1,7 +1,6 @@
 import styled from "styled-components"
 
 export const ParentContainer = styled.div`
-    height: 100vh;
     width: 100vw;
     position: absolute;
     top: 0;
@@ -10,4 +9,12 @@ export const ParentContainer = styled.div`
     align-items: center;
     background-color: #5f0f5f;
     flex-direction: column;
+
+    @media (min-width: 320px) {
+        height: fit-content;
+    }
+
+    @media (min-width: 768px) {
+        height: 100vh;
+    }
 `

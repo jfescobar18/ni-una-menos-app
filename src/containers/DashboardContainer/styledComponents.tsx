@@ -9,6 +9,7 @@ export const ButtonContainer = styled.div`
 
 export const LocationContainer = styled.div`
     margin-top: 30px;
+    margin-bottom: 30px;
     width: 100%;
     display: flex;
     justify-content: center;
