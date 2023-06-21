@@ -15,7 +15,7 @@ const MenuContainer = () => {
                 />
                 <ButtonContainer>
                     <Button
-                        href="#"
+                        to="/Dashboard"
                         text="Dispositivo 1"
                         bgColor="#fff"
                         textColor="#5f0f5f"
@@ -23,7 +23,7 @@ const MenuContainer = () => {
                         size="s"
                     />
                     <Button
-                        href="#"
+                        to="/Dashboard"
                         text="Dispositivo 2"
                         bgColor="#fff"
                         textColor="#5f0f5f"

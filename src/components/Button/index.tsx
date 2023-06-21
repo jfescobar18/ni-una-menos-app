@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { StyledButton } from "./styledComponents"
 
 export interface iButton {
-    href: string
+    to: string
     text: string
     bgColor: string
     textColor: string
@@ -11,7 +11,7 @@ export interface iButton {
 }
 
 export const Button = ({
-    href,
+    to,
     text,
     bgColor = "#fff",
     textColor = "#5f0f5f",
@@ -27,7 +27,7 @@ export const Button = ({
     return (
         <>
             <StyledButton
-                href={href}
+                to={to}
                 bgColor={bgColor}
                 textColor={textColor}
                 width={width}
