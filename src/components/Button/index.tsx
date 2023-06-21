@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { StyledButton } from "./styledComponents"
 
-export interface iButton {
+interface ButtonProps {
     to: string
     text: string
     bgcolor: string
@@ -17,7 +17,7 @@ export const Button = ({
     textcolor = "#5f0f5f",
     size = "s",
     width = "125px",
-}: iButton) => {
+}: ButtonProps) => {
     const [sizeClass, setSizeClass] = useState<string>("s")
 
     useEffect(() => {

@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react"
 import { StyledHeader } from "./styledComponents"
 
-export interface iHeader {
+interface HeaderProps {
     text: string
     size?: string
     color?: string
 }
 
-const Header = ({ text, size = "s", color = "#000" }: iHeader) => {
+const Header = ({ text, size = "s", color = "#000" }: HeaderProps) => {
     const [sizeClass, setSizeClass] = useState<string>("s")
 
     useEffect(() => {

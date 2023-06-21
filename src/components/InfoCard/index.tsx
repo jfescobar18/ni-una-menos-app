@@ -1,12 +1,12 @@
 import { InfoContainer, StyledField } from "./styledComponents"
 
-export interface iInfoCard {
+interface InfoCardProps {
     name: string
     lastLocation: string
     SOSTime: string
 }
 
-export const InfoCard = ({ name, lastLocation, SOSTime }: iInfoCard) => {
+export const InfoCard = ({ name, lastLocation, SOSTime }: InfoCardProps) => {
     return (
         <>
             <InfoContainer>
