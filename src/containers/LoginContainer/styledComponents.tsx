@@ -7,7 +7,6 @@ export const ParentContainer = styled.div`
     top: 0;
     left: 0;
     display: flex;
-    justify-content: center;
     align-items: center;
     background-color: #5f0f5f;
     flex-direction: column;

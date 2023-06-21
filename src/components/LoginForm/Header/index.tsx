@@ -3,11 +3,11 @@ import { StyledHeader } from "./styledComponents"
 
 export interface iHeader {
     text: string
-    size: string
+    size?: string
     color?: string
 }
 
-const Header = ({ text, size, color = "#000" }: iHeader) => {
+const Header = ({ text, size = "s", color = "#000" }: iHeader) => {
     const [sizeClass, setSizeClass] = useState<string>("s")
 
     useEffect(() => {
