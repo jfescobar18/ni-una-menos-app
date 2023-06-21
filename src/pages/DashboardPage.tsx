@@ -1,4 +1,4 @@
-import DashboardContainer from "../containers/DashboardContainer/DashboardContainer"
+import DashboardContainer from "../containers/DashboardContainer"
 
 const DashboardPage = () => {
     return (

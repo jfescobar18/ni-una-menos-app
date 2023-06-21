@@ -1,4 +1,4 @@
-import MenuContainer from "../containers/MenuContainer/MenuContainer"
+import MenuContainer from "../containers/MenuContainer"
 
 const MenuPage = () => {
     return (
