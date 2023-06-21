@@ -1,5 +1,5 @@
-import { Button } from "../../components/LoginForm/Button"
-import Header from "../../components/LoginForm/Header"
+import { Button } from "../../components/Button"
+import Header from "../../components/Header"
 import { ParentContainer } from "../LoginContainer/styledComponents"
 import { ButtonContainer } from "./styledComponents"
 
