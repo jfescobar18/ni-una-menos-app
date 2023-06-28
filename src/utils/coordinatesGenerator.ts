@@ -27,11 +27,9 @@ export const coordinatesGenerator = async function* (
     numPoints: number
 ): AsyncGenerator<GoogleMapsPosition> {
     const coordinates = generateNextCoordinate(start, end, numPoints)
-    let count = 0
 
-    while (count < numPoints) {
-        yield coordinates[count]
-        count++
+    for (const coordinate of coordinates) {
+        yield coordinate
         await new Promise<void>((resolve) => setTimeout(resolve, 2000))
     }
 }

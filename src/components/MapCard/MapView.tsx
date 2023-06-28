@@ -22,8 +22,8 @@ const MapView = ({ center, markerList, zoom }: MapViewProps) => {
                 })
             }
 
-            const createMarker = (markerObj: GoogleMapsPosition) =>
-                new window.google.maps.Marker({
+            const createMarker = (markerObj: GoogleMapsPosition) => {
+                return new window.google.maps.Marker({
                     position: {
                         lat: markerObj.lat,
                         lng: markerObj.lng,
@@ -34,6 +34,7 @@ const MapView = ({ center, markerList, zoom }: MapViewProps) => {
                         scaledSize: new window.google.maps.Size(30, 40),
                     },
                 })
+            }
 
             googleMap = initGoogleMap()
 
@@ -45,7 +46,7 @@ const MapView = ({ center, markerList, zoom }: MapViewProps) => {
         } catch (e) {
             console.log("maps", e)
         }
-    })
+    }, [markerList])
 
     return (
         <>
