@@ -3,7 +3,7 @@ import { InfoContainer, StyledField } from "./styledComponents"
 interface InfoCardProps {
     name: string
     lastLocation: string
-    SOSTime: string
+    SOSTime: string | null
 }
 
 export const InfoCard = ({ name, lastLocation, SOSTime }: InfoCardProps) => {

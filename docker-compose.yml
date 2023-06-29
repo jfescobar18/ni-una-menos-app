@@ -5,6 +5,11 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    environment:
+      VITE_MQTT_URL: ${VITE_MQTT_URL}
+      VITE_MQTT_USERNAME: ${VITE_MQTT_USERNAME}
+      VITE_MQTT_PASSWORD: ${VITE_MQTT_PASSWORD}
+      VITE_MQTT_PORT: ${VITE_MQTT_PORT}
     volumes: 
       - .:/usr/src/
       - /usr/src/node_modules/

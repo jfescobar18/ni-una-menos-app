@@ -19,3 +19,31 @@ export const MapContainer = styled.div`
         height: 100%;
     }
 `
+export const MapSkeleton = styled.span`
+    height: 300px;
+    width: 100%;
+    display: block;
+    background: linear-gradient(
+            to right,
+            rgba(255, 255, 255, 0),
+            rgba(172, 172, 172, 0.5) 50%,
+            rgba(255, 255, 255, 0) 100%
+        ),
+        lightgray;
+    background-repeat: repeat-y;
+    background-size: 500px 200px;
+    background-position: 0 0;
+    animation: shine 2s infinite ease;
+    color: #000;
+    text-align: center;
+    font-size: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @keyframes shine {
+        to {
+            background-position: 100% 0, 0 0;
+        }
+    }
+`

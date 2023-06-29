@@ -1,36 +1,63 @@
 import { useEffect, useState } from "react"
+import { GoogleMapsPosition } from "../../types/GoogleMapsMarker"
+import { parseGoogleCoordinates, parseSOS } from "../../utils/mqttParser"
+import { useMqtt } from "../../hooks/useMqtt"
 import { Button } from "../../components/Button"
 import { InfoCard } from "../../components/InfoCard"
 import MapCard from "../../components/MapCard"
-import { ParentContainer } from "../LoginContainer/styledComponents"
 import { ButtonContainer, LocationContainer } from "./styledComponents"
-import { coordinatesGenerator } from "../../utils/coordinatesGenerator"
-import { GoogleMapsPosition } from "../../types/GoogleMapsMarker"
+import { ParentContainer } from "../LoginContainer/styledComponents"
 
 const DashboardContainer = () => {
-    const start = { lat: 19.347622, lng: -99.275614 }
-    const end = { lat: 19.490966, lng: -99.126652 }
-
+    const [showMap, setShowMap] = useState<boolean>(false)
+    const [direction, setDirection] = useState<string>("")
+    const [SOSAlertTime, setSOSAlertTime] = useState<string | null>(null)
+    const { mqttSubscribe, isConnected, payload } = useMqtt()
     const [centerPosition, setCenterPosition] = useState<GoogleMapsPosition>({
         lat: 0,
         lng: 0,
     })
-
     const [markerPosition, setMarkerPosition] = useState<GoogleMapsPosition>({
         lat: 0,
         lng: 0,
     })
 
-    const getCoordinates = async () => {
-        for await (const coordinate of coordinatesGenerator(start, end, 20)) {
-            setMarkerPosition(coordinate)
-            setCenterPosition(coordinate)
-        }
+    const getCoordinatesAndDirection = async () => {
+        const { coordinates, direction } = await parseGoogleCoordinates(
+            payload.message
+        )
+
+        setDirection(direction)
+        setMarkerPosition(coordinates)
+        setCenterPosition(coordinates)
     }
 
     useEffect(() => {
-        getCoordinates()
-    }, [])
+        if (isConnected) {
+            mqttSubscribe("location")
+            mqttSubscribe("sosalert")
+        }
+    }, [isConnected])
+
+    useEffect(() => {
+        try {
+            if (payload.message && ["sosalert"].includes(payload.topic)) {
+                const alertResult = parseSOS(payload.message)
+
+                if (alertResult) {
+                    setShowMap(true)
+                    setSOSAlertTime(alertResult)
+                }
+            } else if (
+                payload.message &&
+                ["location"].includes(payload.topic)
+            ) {
+                getCoordinatesAndDirection()
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }, [payload])
 
     return (
         <>
@@ -49,13 +76,14 @@ const DashboardContainer = () => {
                 <LocationContainer>
                     <InfoCard
                         name="Juanita Perez"
-                        lastLocation="lastLocation"
-                        SOSTime="SOSTime"
+                        lastLocation={direction}
+                        SOSTime={SOSAlertTime}
                     />
                     <MapCard
                         markerPosition={markerPosition}
                         center={centerPosition}
                         zoom={15}
+                        showMap={showMap}
                     />
                 </LocationContainer>
             </ParentContainer>

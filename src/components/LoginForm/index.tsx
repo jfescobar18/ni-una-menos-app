@@ -16,14 +16,14 @@ const InputForm = () => {
                         <InputBox>
                             <StyledInput
                                 type="text"
-                                placeholder="Enter Your Email"
+                                placeholder="Ingresa tu email"
                                 required
                             />
                         </InputBox>
                         <InputBox>
                             <StyledInput
                                 type="password"
-                                placeholder="Enter Your Password"
+                                placeholder="Ingresa tu contraseña"
                                 required
                             />
                         </InputBox>
