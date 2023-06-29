@@ -12,8 +12,8 @@ const DashboardContainer = () => {
     const end = { lat: 19.490966, lng: -99.126652 }
 
     const [centerPosition, setCenterPosition] = useState<GoogleMapsPosition>({
-        lat: 19.347622,
-        lng: -99.275614,
+        lat: 0,
+        lng: 0,
     })
 
     const [markerPosition, setMarkerPosition] = useState<GoogleMapsPosition>({
