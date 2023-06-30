@@ -15,7 +15,7 @@ const MapCard = ({ markerPosition, center, zoom, showMap }: MapCardProps) => {
         <>
             <MapContainer>
                 {showMap ? (
-                    <Wrapper apiKey={"AIzaSyCthUx0-Y6uSgZ5ts2JvsS9HtL9IEh8wwU"}>
+                    <Wrapper apiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY}>
                         <MapView
                             markerList={[markerPosition]}
                             center={center}

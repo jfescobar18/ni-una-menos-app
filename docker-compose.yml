@@ -6,6 +6,7 @@ services:
       context: .
       dockerfile: Dockerfile
     environment:
+      VITE_GOOGLE_MAPS_API_KEY: ${VITE_GOOGLE_MAPS_API_KEY}
       VITE_MQTT_URL: ${VITE_MQTT_URL}
       VITE_MQTT_USERNAME: ${VITE_MQTT_USERNAME}
       VITE_MQTT_PASSWORD: ${VITE_MQTT_PASSWORD}
