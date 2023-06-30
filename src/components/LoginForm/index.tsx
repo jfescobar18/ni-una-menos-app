@@ -6,12 +6,16 @@ import {
     StyledInput,
 } from "./styledComponents"
 
-const InputForm = () => {
+interface InputFormProps {
+    onSubmit: (e: React.FormEvent<HTMLFormElement>) => void
+}
+
+const InputForm = ({ onSubmit }: InputFormProps) => {
     return (
         <>
             <ParentContainer>
                 <FormContainer>
-                    <form action="#">
+                    <form onSubmit={onSubmit}>
                         <FormTitle>Login</FormTitle>
                         <InputBox>
                             <StyledInput
