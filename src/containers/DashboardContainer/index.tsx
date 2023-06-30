@@ -47,6 +47,8 @@ const DashboardContainer = () => {
                 if (alertResult) {
                     setShowMap(true)
                     setSOSAlertTime(alertResult)
+                } else {
+                    setShowMap(false)
                 }
             } else if (
                 payload.message &&
