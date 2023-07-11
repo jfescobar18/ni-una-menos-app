@@ -54,10 +54,9 @@ export const parseSOS = (message: string): string | null => {
         const month = String(currentDate.getMonth() + 1).padStart(2, "0")
         const day = String(currentDate.getDate()).padStart(2, "0")
 
-        const formattedTime = message.replace("/", "")
         const formattedDate = `${year}-${month}-${day}`
 
-        const date = new Date(`${formattedDate}T${formattedTime}`)
+        const date = new Date(`${formattedDate}T${message}`)
 
         const formatOptions: Intl.DateTimeFormatOptions = {
             weekday: "long",
