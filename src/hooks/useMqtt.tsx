@@ -21,7 +21,6 @@ export const useMqtt = () => {
     })
 
     const getClientId = () => {
-        console.log("Set MQTT Broker...")
         return `mqttjs_ + ${Math.random().toString(16).substr(2, 8)}`
     }
 
@@ -38,8 +37,6 @@ export const useMqtt = () => {
             ...setting.config,
         }
 
-        console.log(setting.config)
-
         const clientMqtt = await mqtt.connect(url, options)
 
         setClient(clientMqtt)
@@ -48,7 +45,6 @@ export const useMqtt = () => {
     const mqttDisconnect = () => {
         if (client) {
             client.end(undefined, undefined, () => {
-                console.log("MQTT Disconnected")
                 setIsConnected(false)
             })
         }
@@ -56,7 +52,6 @@ export const useMqtt = () => {
 
     const mqttSubscribe = async (topic: string) => {
         if (client) {
-            console.log("MQTT subscribe ", topic)
             const clientMqtt = await client.subscribe(
                 topic,
                 {
@@ -66,7 +61,7 @@ export const useMqtt = () => {
                 },
                 (error) => {
                     if (error) {
-                        console.log("MQTT Subscribe to topics error", error)
+                        console.error("MQTT Subscribe to topics error", error)
                         return
                     }
                 }
@@ -81,7 +76,7 @@ export const useMqtt = () => {
                 topic,
                 (error: Error) => {
                     if (error) {
-                        console.log("MQTT Unsubscribe error", error)
+                        console.error("MQTT Unsubscribe error", error)
                         return
                     }
                 }
@@ -101,7 +96,6 @@ export const useMqtt = () => {
         if (client) {
             client.on("connect", () => {
                 setIsConnected(true)
-                console.log("MQTT Connected")
             })
             client.on("error", (err) => {
                 console.error("MQTT Connection error: ", err)
