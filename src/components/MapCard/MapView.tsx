@@ -63,7 +63,7 @@ const MapView = ({ markerList, center, zoom }: MapViewProps) => {
                 }
             })
         } catch (e) {
-            console.log("maps", e)
+            console.error("maps", e)
         }
     }, [markerList])
 
