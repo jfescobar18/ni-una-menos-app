@@ -3,6 +3,7 @@ import { StyledButton } from "./styledComponents"
 
 interface ButtonProps {
     to: string
+    onClick?: () => void
     text: string
     bgcolor: string
     textcolor: string
@@ -12,6 +13,7 @@ interface ButtonProps {
 
 export const Button = ({
     to,
+    onClick,
     text,
     bgcolor = "#fff",
     textcolor = "#5f0f5f",
@@ -28,6 +30,7 @@ export const Button = ({
         <>
             <StyledButton
                 to={to}
+                onClick={onClick}
                 bgcolor={bgcolor}
                 textcolor={textcolor}
                 width={width}
