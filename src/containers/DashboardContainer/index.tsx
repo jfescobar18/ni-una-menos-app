@@ -7,8 +7,15 @@ import { InfoCard } from "../../components/InfoCard"
 import MapCard from "../../components/MapCard"
 import { ButtonContainer, LocationContainer } from "./styledComponents"
 import { ParentContainer } from "../LoginContainer/styledComponents"
+import { MariaDevice } from "../../types/MariaDevice"
+import { useSelector } from "react-redux"
+import { useNavigate } from "react-router-dom"
 
 const DashboardContainer = () => {
+    const navigate = useNavigate()
+    const activeDevice = useSelector(
+        (state: { activeDevice: MariaDevice }) => state.activeDevice
+    )
     const [showMap, setShowMap] = useState<boolean>(false)
     const [direction, setDirection] = useState<string>("")
     const [SOSAlertTime, setSOSAlertTime] = useState<string | null>(null)
@@ -33,9 +40,15 @@ const DashboardContainer = () => {
     }
 
     useEffect(() => {
+        if (activeDevice.id === "0") {
+            navigate("/Menu")
+        }
+    })
+
+    useEffect(() => {
         if (isConnected) {
-            mqttSubscribe("location")
-            mqttSubscribe("sosalert")
+            mqttSubscribe(`${activeDevice.id}-location`)
+            mqttSubscribe(`${activeDevice.id}-sosalert`)
         }
     }, [isConnected])
 
@@ -57,7 +70,7 @@ const DashboardContainer = () => {
                 getCoordinatesAndDirection()
             }
         } catch (error) {
-            console.log(error)
+            console.error(error)
         }
     }, [payload])
 
@@ -77,7 +90,7 @@ const DashboardContainer = () => {
 
                 <LocationContainer>
                     <InfoCard
-                        name="Juanita Perez"
+                        name={activeDevice.name}
                         lastLocation={direction}
                         SOSTime={SOSAlertTime}
                     />
