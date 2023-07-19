@@ -1,5 +1,8 @@
+// React
 import { useState, useEffect } from "react"
+// Libs
 import mqtt from "mqtt"
+// Types and Interfaces
 import { MQTTPayload } from "../types/MQTTPayload"
 
 const setting = {

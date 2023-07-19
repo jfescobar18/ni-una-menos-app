@@ -1,15 +1,21 @@
+// React
 import { useEffect, useState } from "react"
-import { GoogleMapsPosition } from "../../types/GoogleMapsMarker"
-import { parseGoogleCoordinates, parseSOS } from "../../utils/mqttParser"
-import { useMqtt } from "../../hooks/useMqtt"
+import { useSelector } from "react-redux"
+import { useNavigate } from "react-router-dom"
+// Components and Containers
 import { Button } from "../../components/Button"
 import { InfoCard } from "../../components/InfoCard"
 import MapCard from "../../components/MapCard"
+// Types and Interfaces
+import { GoogleMapsPosition } from "../../types/GoogleMapsMarker"
+import { MariaDevice } from "../../types/MariaDevice"
+// Hooks
+import { useMqtt } from "../../hooks/useMqtt"
+// Utils
+import { parseGoogleCoordinates, parseSOS } from "../../utils/mqttParser"
+// Styled Components
 import { ButtonContainer, LocationContainer } from "./styledComponents"
 import { ParentContainer } from "../LoginContainer/styledComponents"
-import { MariaDevice } from "../../types/MariaDevice"
-import { useSelector } from "react-redux"
-import { useNavigate } from "react-router-dom"
 
 const DashboardContainer = () => {
     const navigate = useNavigate()
@@ -54,7 +60,7 @@ const DashboardContainer = () => {
 
     useEffect(() => {
         try {
-            if (payload.message && ["sosalert"].includes(payload.topic)) {
+            if (payload.message && payload.topic.includes("sosalert")) {
                 const alertResult = parseSOS(payload.message)
 
                 if (alertResult) {
@@ -63,10 +69,7 @@ const DashboardContainer = () => {
                 } else {
                     setShowMap(false)
                 }
-            } else if (
-                payload.message &&
-                ["location"].includes(payload.topic)
-            ) {
+            } else if (payload.message && payload.topic.includes("location")) {
                 getCoordinatesAndDirection()
             }
         } catch (error) {

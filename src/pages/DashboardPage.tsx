@@ -1,3 +1,4 @@
+// Components and Containers
 import DashboardContainer from "../containers/DashboardContainer"
 
 const DashboardPage = () => {

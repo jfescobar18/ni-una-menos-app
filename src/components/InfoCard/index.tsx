@@ -1,3 +1,4 @@
+// Styled Components
 import { InfoContainer, StyledField } from "./styledComponents"
 
 interface InfoCardProps {

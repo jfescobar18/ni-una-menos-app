@@ -1,9 +1,14 @@
-import { Button } from "../../components/Button"
-import Header from "../../components/Header"
-import { ParentContainer, ButtonContainer } from "./styledComponents"
-import { MariaDevice } from "../../types/MariaDevice"
+// Libs
 import { useDispatch } from "react-redux"
+import { Button } from "../../components/Button"
+// Redux Store
 import { setActiveDevice } from "../../app/activeDevice/actions"
+// Components and Containers
+import Header from "../../components/Header"
+// Types and Interfaces
+import { MariaDevice } from "../../types/MariaDevice"
+// Styled Components
+import { ParentContainer, ButtonContainer } from "./styledComponents"
 
 const MenuContainer = () => {
     const dispatch = useDispatch()

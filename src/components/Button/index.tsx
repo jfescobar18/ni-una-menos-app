@@ -1,4 +1,6 @@
+// React
 import { useEffect, useState } from "react"
+// Styled Components
 import { StyledButton } from "./styledComponents"
 
 interface ButtonProps {

@@ -1,3 +1,4 @@
+// Components and Containers
 import MenuContainer from "../containers/MenuContainer"
 
 const MenuPage = () => {

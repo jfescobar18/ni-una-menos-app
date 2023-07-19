@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+// Styled Components
 import { StyledHeader } from "./styledComponents"
 
 interface HeaderProps {
@@ -8,15 +8,9 @@ interface HeaderProps {
 }
 
 const Header = ({ text, size = "s", color = "#000" }: HeaderProps) => {
-    const [sizeClass, setSizeClass] = useState<string>("s")
-
-    useEffect(() => {
-        setSizeClass(size.toLowerCase())
-    }, [size])
-
     return (
         <>
-            <StyledHeader color={color} className={sizeClass}>
+            <StyledHeader color={color} className={size.toLocaleLowerCase()}>
                 {text}
             </StyledHeader>
         </>

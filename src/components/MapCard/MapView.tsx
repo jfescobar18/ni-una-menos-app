@@ -1,77 +1,86 @@
-import { useEffect, useRef, useState } from "react"
-import { MarkerClusterer } from "@googlemaps/markerclusterer"
+import {
+    Children,
+    isValidElement,
+    useEffect,
+    useRef,
+    useState,
+    cloneElement,
+    ReactNode,
+} from "react"
 import icon from "../../assets/customMarker.png"
-import { GoogleMapsPosition } from "../../types/GoogleMapsMarker"
 
 interface MapViewProps {
-    markerList: GoogleMapsPosition[]
     center: google.maps.LatLngLiteral
     zoom: number
+    children: ReactNode
 }
 
-const MapView = ({ markerList, center, zoom }: MapViewProps) => {
+const MapView = ({ center, zoom, children }: MapViewProps) => {
     const ref = useRef<HTMLDivElement>(null)
     const [googleMap, setGoogleMap] = useState<
         google.maps.Map | null | undefined
     >(null)
 
-    const createMap = new Promise((resolve, reject) => {
-        try {
-            if (ref.current && !googleMap) {
-                setGoogleMap(
-                    new window.google.maps.Map(ref.current, {
-                        center: center,
-                        zoom: zoom,
-                    })
-                )
-            }
-
-            resolve(googleMap)
-        } catch (error) {
-            reject(error)
+    useEffect(() => {
+        if (ref.current && !googleMap) {
+            setGoogleMap(
+                new window.google.maps.Map(ref.current, {
+                    center: center,
+                    zoom: zoom,
+                })
+            )
         }
-    })
+    }, [ref, googleMap])
 
     useEffect(() => {
-        try {
-            createMap.then(() => {
-                if (googleMap) {
-                    const createMarker = (markerObj: GoogleMapsPosition) => {
-                        return new window.google.maps.Marker({
-                            position: {
-                                lat: markerObj.lat,
-                                lng: markerObj.lng,
-                            },
-                            map: googleMap,
-                            icon: {
-                                url: icon,
-                                scaledSize: new window.google.maps.Size(30, 40),
-                            },
-                        })
-                    }
-
-                    const markers = markerList.map((x) => {
-                        return createMarker(x)
-                    })
-
-                    new MarkerClusterer({ map: googleMap, markers: markers })
-
-                    googleMap?.setCenter({
-                        lat: markerList[0].lat,
-                        lng: markerList[0].lng,
-                    })
-                }
-            })
-        } catch (e) {
-            console.error("maps", e)
-        }
-    }, [markerList])
+        googleMap?.setCenter({
+            lat: center.lat,
+            lng: center.lng,
+        })
+    }, [center])
 
     return (
         <>
             <div ref={ref} id="map" />
+            {Children.map(children, (child) => {
+                if (isValidElement(child)) {
+                    // @ts-ignore
+                    return cloneElement(child, { map: googleMap })
+                }
+            })}
         </>
     )
+}
+
+export const Marker = (options: google.maps.MarkerOptions) => {
+    const [marker, setMarker] = useState<google.maps.Marker>()
+
+    useEffect(() => {
+        if (!marker) {
+            setMarker(
+                new google.maps.Marker({
+                    icon: {
+                        url: icon,
+                        scaledSize: new window.google.maps.Size(30, 40),
+                    },
+                })
+            )
+        }
+
+        return () => {
+            if (marker) {
+                marker.setMap(null)
+            }
+        }
+    }, [marker])
+
+    useEffect(() => {
+        if (marker) {
+            marker.setOptions(options)
+        }
+    }, [marker, options])
+
+    return null
 }
 
 export default MapView
